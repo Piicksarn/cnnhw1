@@ -4,19 +4,17 @@ import java.io.*;
 import java.math.*;
 import java.util.*;
 //test
-public class cnnhw1{ //¥Ø«e³o­Óµ{¦¡½X¥D­n¥ı´ú¸Õ·Pª¾¾÷1
+public class cnnhw1{ //ç›®å‰é€™å€‹ç¨‹å¼ç¢¼ä¸»è¦å…ˆæ¸¬è©¦æ„ŸçŸ¥æ©Ÿ1
 //	static ArrayList<ArrayList<String>> array_list = new ArrayList<ArrayList<String>>();
 	static ArrayList<float[]> array = new ArrayList<float[]>();
 	static Scanner input = new Scanner(System.in);
-	
-/*
+	/*
 	public static float sub(float s1,float s2){
 		BigDecimal b1 = new BigDecimal(Float.toString(s1));
 	    BigDecimal b2 = new BigDecimal(Float.toString(s2));
 	    return b1.subtract(b2).floatValue();
-	} //°µ¹Bºâªº®É«á§â­È¶Ç¶i¨Ó¥ı¥ÎstringÀx¦s bigdecimal ¦A¥Îfloat¶Ç¥X¥h
-*/
-	
+	} //åšé‹ç®—çš„æ™‚å¾ŒæŠŠå€¼å‚³é€²ä¾†å…ˆç”¨stringå„²å­˜ bigdecimal å†ç”¨floatå‚³å‡ºå»
+	*/
 	/*	1.load file
 	 * 	2.use split and trans to float wiz token2,then store into array
 	 * 	3.do cal 
@@ -25,25 +23,25 @@ public class cnnhw1{ //¥Ø«e³o­Óµ{¦¡½X¥D­n¥ı´ú¸Õ·Pª¾¾÷1
 	public static void main(String[] args) throws IOException{
 		String Filename = "E:\\1041\\cnn\\HW1\\1.txt";
 		FileReader fr = new FileReader(Filename); 
-		BufferedReader br = new BufferedReader(fr);//¦bbr.ready¤Ï¬d¿é¤J¦ê¬yªºª¬ªp¬O§_¦³¸ê®Æ
+		BufferedReader br = new BufferedReader(fr);//åœ¨br.readyåæŸ¥è¼¸å…¥ä¸²æµçš„ç‹€æ³æ˜¯å¦æœ‰è³‡æ–™
 
 		String txt;
 		while((txt=br.readLine())!=null){
 			String[] token = txt.split("\t");
-			float[] token2 = new float[token.length];//«Å§ifloat[]
+			float[] token2 = new float[token.length];//å®£å‘Šfloat[]
 
 			try{
 				for(int i=0;i<token.length;i++){
 					token2[i] = Float.parseFloat(token[i]);	
-				}//§âtoken(string)Âà­¼token2(float)
-				array.add(token2);//§âtxt¸Ì­±¤º®e¥ı¤Á³Î¹L¦b³£Åª¶iarray¤º 
+				}//æŠŠtoken(string)è½‰ä¹˜token2(float)
+				array.add(token2);//æŠŠtxtè£¡é¢å…§å®¹å…ˆåˆ‡å‰²éåœ¨éƒ½è®€é€²arrayå…§ 
 			}catch(NumberFormatException ex){
 				System.out.println("Sorry Error...");
 			}
 		}
-		fr.close();//Ãö³¬ÀÉ®×
+		fr.close();//é—œé–‰æª”æ¡ˆ
 		
-		System.out.println("Please enter loop times: ");//¿é¤J­¡¥N¦¸¼Æ­­¨î
+		System.out.println("Please enter loop times: ");//è¼¸å…¥è¿­ä»£æ¬¡æ•¸é™åˆ¶
 		
 		int looptimes = input.nextInt();
 		System.out.println("Your loop times is "+ looptimes);
@@ -52,14 +50,13 @@ public class cnnhw1{ //¥Ø«e³o­Óµ{¦¡½X¥D­n¥ı´ú¸Õ·Pª¾¾÷1
 			System.out.print(array.get(i)[j] + "\t");
 			}
 			System.out.println();
-		}//§âarraylist ¤ºªº¤º®e³£¦L¥X¨Ó
-		
+		}//æŠŠarraylist å…§çš„å…§å®¹éƒ½å°å‡ºä¾†
 		/*
-		 * ¥H¤U¶}©l°µ¹Bºâ ¥ı³]©w¾Ç²ß²v¸òªì©l³]©w¸ò½Ò¥»¤@¼Ë  
+		 * ä»¥ä¸‹é–‹å§‹åšé‹ç®— å…ˆè¨­å®šå­¸ç¿’ç‡è·Ÿåˆå§‹è¨­å®šè·Ÿèª²æœ¬ä¸€æ¨£  
 		 */
 		/*
-		 * ¥ı¥Î¤@­Ó°ò·Ç­È ¦pªG>=1 ¨º´Nª½±µ¥Î¥L³]¬°1 ¨ä¥L¤£¦P³]¬°-1
-		 * ¦P²z ¦pªG¤@¶}©l®³¨ì0or-1 
+		 * å…ˆç”¨ä¸€å€‹åŸºæº–å€¼ å¦‚æœ>=1 é‚£å°±ç›´æ¥ç”¨ä»–è¨­ç‚º1 å…¶ä»–ä¸åŒè¨­ç‚º-1
+		 * åŒç† å¦‚æœä¸€é–‹å§‹æ‹¿åˆ°0or-1 
 		 */
 		int reference=Float.floatToIntBits(array.get(0)[array.get(0).length-1]);
 		for(int i=0;i<array.size();i++){
@@ -69,7 +66,7 @@ public class cnnhw1{ //¥Ø«e³o­Óµ{¦¡½X¥D­n¥ı´ú¸Õ·Pª¾¾÷1
 			else{
 				array.get(i)[array.get(i).length-1]=-1;
 			}		
-		}//°²¸Ë¬O¹ïªº¦³®É­Ô­n§ï -1 1 °Oµù°O¦í 
+		}//å‡è£æ˜¯å°çš„æœ‰æ™‚å€™è¦æ”¹ -1 1 è¨˜è¨»è¨˜ä½ 
 
 		System.out.println("start to do cal");
 		float studyrate = 0.8f;
@@ -86,11 +83,11 @@ public class cnnhw1{ //¥Ø«e³o­Óµ{¦¡½X¥D­n¥ı´ú¸Õ·Pª¾¾÷1
 		whileloop:
 		while(looptimes!=0){
 			
-			for(int w=0;w<(array.get(xn).length-1);w++){//­n¥Îªº¥u¦³«e¨â­Ó ³Ì«á¤@­Ó¬Odesire
-				sum += (initial[w]) * (array.get(xn)[w]);//°µ¹Bºâ®É§âarray¤ºªºÂ¾¥ıÂà­¼float
+			for(int w=0;w<(array.get(xn).length-1);w++){//è¦ç”¨çš„åªæœ‰å‰å…©å€‹ æœ€å¾Œä¸€å€‹æ˜¯desire
+				sum += (initial[w]) * (array.get(xn)[w]);//åšé‹ç®—æ™‚æŠŠarrayå…§çš„è·å…ˆè½‰ä¹˜float
 			}
 			caltemp=x0*threshold;
-			sum += caltemp;	//»Ö­È¸òx0¬Û­¼³Ì«á¦A°µ
+			sum += caltemp;	//é–¥å€¼è·Ÿx0ç›¸ä¹˜æœ€å¾Œå†åš
 			if(sum>=0){
 				judge=1;//sum result > 0
 			}
@@ -99,14 +96,14 @@ public class cnnhw1{ //¥Ø«e³o­Óµ{¦¡½X¥D­n¥ı´ú¸Õ·Pª¾¾÷1
 			}
 	
 			if (judge!=array.get(xn)[array.get(xn).length-1]&&judge>=0){
-				for(int w=0;w<(array.get(xn).length-1);w++){//­n¥Îªº¥u¦³«e¨â­Ó ³Ì«á¤@­Ó¬Odesire
+				for(int w=0;w<(array.get(xn).length-1);w++){//è¦ç”¨çš„åªæœ‰å‰å…©å€‹ æœ€å¾Œä¸€å€‹æ˜¯desire
 					initial[w] -= studyrate*array.get(xn)[w];
 				}
-				threshold -= studyrate*x0;//call sub function ¹w¨¾¿ò¥¢ºë«×			
+				threshold -= studyrate*x0;//call sub function é é˜²éºå¤±ç²¾åº¦			
 				correctcount=0;
 			}
 			else if(judge!=array.get(xn)[array.get(xn).length-1]&&judge<0){
-				for(int w=0;w<(array.get(0).length-1);w++){//­n¥Îªº¥u¦³«e¨â­Ó ³Ì«á¤@­Ó¬Odesire
+				for(int w=0;w<(array.get(0).length-1);w++){//è¦ç”¨çš„åªæœ‰å‰å…©å€‹ æœ€å¾Œä¸€å€‹æ˜¯desire
 					initial[w] += studyrate*array.get(xn)[w];	
 				}
 				threshold += studyrate*x0;
@@ -124,14 +121,14 @@ public class cnnhw1{ //¥Ø«e³o­Óµ{¦¡½X¥D­n¥ı´ú¸Õ·Pª¾¾÷1
 			if(correctcount==dataamount-1){
 				correctflag=1;
 				break whileloop;
-			}//·íÁÍªñ©ó¦¬ÀÄ®Éµ¹¤@­Ócorrectflag = 1  Åı«á­±break¤§«áªº¦L¥i¥H¦L¥¿½Tªº¸ê°T
+			}//ç•¶è¶¨è¿‘æ–¼æ”¶æ–‚æ™‚çµ¦ä¸€å€‹correctflag = 1  è®“å¾Œé¢breakä¹‹å¾Œçš„å°å¯ä»¥å°æ­£ç¢ºçš„è³‡è¨Š
 						
 			if (xn==dataamount-1){
 				xn = 0;
 			}
 			else{
 				xn++;
-			}//xn Âk¹s­«ÀY¶}©lºâ
+			}//xn æ­¸é›¶é‡é ­é–‹å§‹ç®—
 			looptimes--;//looptime countdown
 		}
 		if(correctflag==1){
